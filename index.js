@@ -2,12 +2,12 @@
 const express = require ("express")
 const app = express();
 const mongoose =require ("mongoose")
+const hotel = require ("./route/hotel.js")
 
 const dotenv = require("dotenv").config() 
+ app.use(express.json())
 
 
-
-//  try{
      mongoose.connect(process.env.MONGO)
      .then((res)=>{
         console.log("server connect");
@@ -16,11 +16,9 @@ const dotenv = require("dotenv").config()
         console.log("fxghcxhcg",err);
      })
      
-    // }catch (error){
-    //  throw error;
-    // }
+ 
 
-
+     app.use('/',hotel)
 
 
  app.listen(8080,()=>{
