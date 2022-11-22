@@ -16,9 +16,7 @@ const dotenv = require("dotenv").config()
         console.log("fxghcxhcg",err);
      })
      
- 
-
-     app.use('/',hotel)
+   app.use('/',hotel)
 
 
  app.listen(8080,()=>{
