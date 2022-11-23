@@ -14,10 +14,6 @@ const { Schema } = mongoose;
     required:true
     }  
   });
-//bcript utlisation de .pre pour crypter avant sauvegarde ('save')
-User.pre('save',async function(){
-  if (this.isModified('password')) this.password= await bcrypt.hash(this.password, 8)
-})
 
 
 

@@ -1,5 +1,6 @@
 const express= require ("express");
 const user = require("../module/hotel");
+const login= require ("../module/user")
 
 
 
@@ -7,7 +8,7 @@ const router= express.Router();
 
 router.post("/", async (req,res)=>{
     console.log(req.body);
-    const newhotel =  new user(req.body)
+    const newhotel =  new user(req.body)   
     try{
         const savehotel= await newhotel.save()
         res.status(200).json(savehotel)
@@ -15,6 +16,8 @@ router.post("/", async (req,res)=>{
         res.status(500).json(err)
     }
 })
+
+
 
 //READ  all the elements of the database
 router.get("/", async (req,res)=>{
@@ -35,29 +38,29 @@ try{
     const userId= await user.findById(findId)
     updateInfo.forEach(put => user[put]=req.body[put] );
     await userId.save();
-    res.send(userid) 
+    res.send(userId) 
 }catch(e){
     res.status(500).send(e)
 }
 })
 
 
-//update recuperer toujours l'ID
-// router.put("/:id", async (req,res)=>{
+// update recuperer toujours l'ID
+router.put("/:id", async (req,res)=>{
  
-//  console.log(updateInfo)
-// const UserId= req.params.id
-//     try {
-//         const update= await user.findByIdAndUpdate(UserId,req.body)
+ console.log(updateInfo)
+const UserId= req.params.id
+    try {
+        const update= await user.findByIdAndUpdate(UserId,req.body)
        
-//         upd
-//         if(!update) return res.status(404).send('update not found!');
-//         res.send(update)
-//     } catch (error) {
-//         res.status(500).send(error)
+        upd
+        if(!update) return res.status(404).send('update not found!');
+        res.send(update)
+    } catch (error) {
+        res.status(500).send(error)
         
-//     }
-// })
+    }
+})
 // delete recuperer toujours l'ID
 
 router.delete("/:id", async (req,res)=>{
