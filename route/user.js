@@ -9,7 +9,7 @@ const router= express.Router();
 router.post("/",async (req,res)=>{
     console.log(req.body);
    try {
-    const login =  user.findEmail(req.body.email)
+    const login = await user.findEmail(req.body.email)
 if(login){
   const logEmail= new user(req.body)
   const log= await logEmail.save()

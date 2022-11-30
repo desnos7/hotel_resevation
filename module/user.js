@@ -18,7 +18,7 @@ const utilisateur = new Schema({
 },{timestamps: true}
 );
 // fonction pour verifier l'email a l'inscription
-utilisateur.statics.finduser = async (email) => {
+utilisateur.statics.findEmail = async (email) => {
 
     const User =await  user.findOne({email})
     if (User) throw new Error('erreur email  existe ')
